@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Inanna
+Name=Tavru Presenter
 GenericName=Presentation
 Comment=Create and present slide decks
 Exec=inanna %F

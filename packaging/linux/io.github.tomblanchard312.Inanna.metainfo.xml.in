@@ -5,14 +5,14 @@
   <id>io.github.tomblanchard312.Inanna</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT OR Apache-2.0</project_license>
-  <name>Inanna</name>
+  <name>Tavru Presenter</name>
   <summary>Create and present slide decks</summary>
   <developer id="io.github.tomblanchard312">
     <name>tomblanchard312</name>
   </developer>
   <description>
     <p>
-      Inanna builds presentations and slide shows: themes, layouts, shapes, pictures,
+      Tavru Presenter builds presentations and slide shows: themes, layouts, shapes, pictures,
       tables, charts, transitions and animations. It opens and saves PowerPoint (.pptx) files
       and presents them full screen with a presenter view.
     </p>
