@@ -203,7 +203,7 @@ fn cmd_ci() -> Result<(), String> {
             Box::new(|| {
                 let mut c = Command::new(if cfg!(windows) { "python" } else { "python3" });
                 c.current_dir(root()).arg("packaging/test_enki_runtime.py");
-                run(c, "Enki binary packaging regression checks")
+                run(c, "Oqelith binary packaging regression checks")
             }),
         ),
         (

@@ -16,25 +16,25 @@ No changes are pushed to upstream or Inanna main by this review task.
 ## Fork resolutions
 
 Retained Inanna's README, a single roadmap status line, branding, Scribe/Voice,
-explicit release-page updates and binary-only Enki distribution. The previous
+explicit release-page updates and binary-only Oqelith distribution. The previous
 PR #5/#6 review fixes remain in place, including OCI publishing safety,
 NOSUGGEST/KEEPCASE, master/layout formatting, animation hit tests, gradient tile
 flips, outline alignment/miter limits and the compact Picture Format menu.
 
 Used upstream's bundled PDF test font fixture rather than a system font lookup.
 The browser presenter window title uses Inanna; internal compatibility identifiers
-remain unchanged. No private Enki implementation source is introduced.
+remain unchanged. No private Oqelith implementation source is introduced.
 
 ## Validation
 
 All nine `cargo xtask ci` stages passed, including strict native workspace Clippy,
 2322 passing tests (7 existing ignores), assets, layering, doctests and 23 shared
-WASM crates. Both Python OCI/Enki staging suites passed. A separate
+WASM crates. Both Python OCI/Oqelith staging suites passed. A separate
 `cargo check --locked --offline -p deckcraft-web --target wasm32-unknown-unknown`
 passed for the new browser entry point.
 
 Native Windows/macOS/FreeBSD
 installation, browser popup behavior, real audio, signing and publishing require
 separate acceptance; compilation and automated tests do not establish those.
-Existing Enki runtime platform/glibc/AVX2 and cross-app lifecycle release blockers
+Existing Oqelith runtime platform/glibc/AVX2 and cross-app lifecycle release blockers
 remain documented in BUNDLED_ENKI.md. Keep the PR unmerged for review.

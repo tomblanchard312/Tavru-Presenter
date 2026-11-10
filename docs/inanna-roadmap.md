@@ -8,9 +8,9 @@ Preserve engine commands, file formats, undo/recovery, CLI and MCP. Record a syn
 
 Acceptance: a reviewed baseline report identifies exact revision, checks passed, failures and untested platforms; no claims borrowed from upstream releases. Branding and updater checks pass for each deliverable.
 
-## 2. Enki local assistance
+## 2. Oqelith local assistance
 
-First inspect Enki's current SDK, transport, supported platforms and model lifecycle. Use its existing text/chat interface for a single outline-to-slides flow, followed by notes and text revision. The current image-capable SDK snapshot supports image and logo generation; the native Scribe panel uses that verified API. Keep Enki optional; editing and export must work without a runtime or model. Use explicit user initiation, bounded input/output, cancellation, timeouts and visible errors. No silent network fallback or model downloads.
+First inspect Oqelith's current SDK, transport, supported platforms and model lifecycle. Use its existing text/chat interface for a single outline-to-slides flow, followed by notes and text revision. The current image-capable SDK snapshot supports image and logo generation; the native Scribe panel uses that verified API. Keep Oqelith optional; editing and export must work without a runtime or model. Use explicit user initiation, bounded input/output, cancellation, timeouts and visible errors. No silent network fallback or model downloads.
 
 Route accepted changes through existing engine commands so they are undoable. Treat document and model text as untrusted; model output cannot authorize filesystem access or execute arbitrary MCP commands. Preview proposed edits before applying them.
 
@@ -38,9 +38,9 @@ Acceptance: Nabu opens the exported PDF and displays the expected pages; inspect
 
 | Target | Required evidence before support is claimed |
 |---|---|
-| Windows | Native build/install/uninstall, ordinary-user launch, GPU fallback, fonts, file dialogs, `.pptx`, PDF, slideshow/media and Enki smoke tests; report signing status honestly. |
-| Linux | Zorin/Ubuntu native desktop tests on X11 and Wayland; GPU/software fallback, ALSA/media, fonts, portals, install/uninstall and Enki; validate each distributed package separately. |
-| FreeBSD | Native FreeBSD build and desktop run; graphics, audio, fonts, dialogs, `.pptx`, PDF, slideshow and Enki availability; package dependencies and clean install/uninstall in a disposable environment. Cross-compilation alone is insufficient. |
+| Windows | Native build/install/uninstall, ordinary-user launch, GPU fallback, fonts, file dialogs, `.pptx`, PDF, slideshow/media and Oqelith smoke tests; report signing status honestly. |
+| Linux | Zorin/Ubuntu native desktop tests on X11 and Wayland; GPU/software fallback, ALSA/media, fonts, portals, install/uninstall and Oqelith; validate each distributed package separately. |
+| FreeBSD | Native FreeBSD build and desktop run; graphics, audio, fonts, dialogs, `.pptx`, PDF, slideshow and Oqelith availability; package dependencies and clean install/uninstall in a disposable environment. Cross-compilation alone is insufficient. |
 
 All three are targets pending fork validation. Preserve inherited macOS and WASM paths when changing shared code, without expanding the initial certification scope. Run GUIs as an ordinary user; privileged installation uses narrow helpers and explicit native authentication. Avoid broad passwordless privileges and GUI password capture.
 

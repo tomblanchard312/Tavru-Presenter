@@ -109,12 +109,12 @@ Inanna additions (2026-10-30)
 Inanna is an independent fork. Original copyrights and notices above are retained.
 Scribe's blue folded-page icon is original Nisaba contributor artwork, licensed
 MIT OR Apache-2.0; source and revision are recorded in ATTRIBUTION.md.
-The Enki client and protocol dependency is pinned to the published Nisaba snapshot
+The Oqelith client and protocol dependency is pinned to the published Nisaba snapshot
 at tomblanchard312/Qanloom commit 3d75b6a77231ade0c906140e16f9ef66613e0b29.
 Those packages retain their UNLICENSED designation and are not relicensed by this
 application's MIT OR Apache-2.0 terms. No new license grant is made by this notice.
 
-Enki shared SDK (client, protocol and speech controls)
+Oqelith shared SDK (client, protocol and speech controls)
 ======================================================
 
 MIT License
@@ -206,13 +206,13 @@ of Data, including for example machine learning models and models'
 insights.
 
 
-Enki companion runtime (applies only when its binaries are distributed):
+Oqelith companion runtime (applies only when its binaries are distributed):
 
-Enki Runtime Binary Distribution License
+Oqelith Runtime Binary Distribution License
 Copyright (c) 2026 tomblanchard312
 
 Permission is granted, worldwide, perpetually, non-exclusively and royalty-free,
-to use, copy and redistribute official compiled Enki daemon and inference-worker
+to use, copy and redistribute official compiled Oqelith daemon and inference-worker
 binaries supplied by tomblanchard312, including their accompanying installation
 and launch helpers, as part of, or as a companion runtime for, applications
 maintained or distributed by tomblanchard312. This permission includes commercial
@@ -226,14 +226,14 @@ but may not change the functionality of the compiled first-party binaries under
 this grant. This license does not require publication of application source code.
 
 This is a binary distribution grant, not a source-code license. No permission is
-granted to publish or redistribute the private Enki daemon or worker implementation
+granted to publish or redistribute the private Oqelith daemon or worker implementation
 source code. Ownership remains with its respective copyright holders. All rights
 not expressly granted are reserved.
 
 The MIT licenses of sharedai-client, sharedai-protocol and enki-speech-ui remain
 unchanged. Third-party software and model files remain governed by their own
 licenses; this grant neither replaces nor limits those licenses. Model weights
-are not included in this grant. Enki branding remains subject to the separate
+are not included in this grant. Oqelith branding remains subject to the separate
 branding license; this grant conveys no additional trademark rights.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -244,7 +244,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-Eridu interface fonts and icons
+Tavru interface fonts and icons
 
 Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)
 

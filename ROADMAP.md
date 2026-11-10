@@ -4,7 +4,7 @@
 
 **Stage: alpha** · next: beta, ~20 points and ~120–210 h away
 
-> **Last reviewed:** 2026-10-14 · **Last updated:** 2026-11-02 · **Change:** synchronized DeckCraft through 0d45a64d (57 upstream commits); text/media/PPTX fixes, presenter improvements and portable validation integrated; Inanna branding, Enki and prior review fixes retained; readiness estimates unchanged.
+> **Last reviewed:** 2026-10-14 · **Last updated:** 2026-11-02 · **Change:** synchronized DeckCraft through 0d45a64d (57 upstream commits); text/media/PPTX fixes, presenter improvements and portable validation integrated; Inanna branding, Oqelith and prior review fixes retained; readiness estimates unchanged.
 
 DeckCraft aims at full PowerPoint parity, and to be better: faster, open (a documented zip+JSON
 format plus PPTX), scriptable by agents (CLI, JSON control channel, MCP), and available everywhere

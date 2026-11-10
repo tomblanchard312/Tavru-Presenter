@@ -210,7 +210,7 @@ pub(super) fn home(app: &mut SlideApp, ui: &mut Ui, bs: &mut Backstage, out: &mu
     ui.horizontal(|ui| {
         let (r, _) = ui.allocate_exact_size(vec2(36.0, 36.0), Sense::hover());
         crate::dialogs::paint_logo(ui.painter(), r);
-        ui.label(RichText::new("Inanna").font(theme::bold(24.0)).color(t.text));
+        ui.label(RichText::new("Tavru Presenter").font(theme::bold(24.0)).color(t.text));
     });
     ui.add_space(18.0);
     ui.horizontal(|ui| {
@@ -252,7 +252,7 @@ pub(super) fn home(app: &mut SlideApp, ui: &mut Ui, bs: &mut Backstage, out: &mu
         });
     }
     ui.add_space(30.0);
-    ui.hyperlink_to("Inanna support", deckcraft_engine::links::DISCORD);
+    ui.hyperlink_to("Tavru Presenter support", deckcraft_engine::links::DISCORD);
 }
 
 /// New: a blank presentation, then every theme and starter template, with a search box.

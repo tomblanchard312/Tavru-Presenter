@@ -6,7 +6,7 @@ The original PR points at `storytold/deckcraft:main` with maintainer edits disab
 This integration uses an Inanna-owned branch, merging snapshot
 `5fb694d9917d232fbf5b2e0f42ac15d73febde7c` into Inanna main `9fae11e6`.
 Upstream history is preserved. Inanna branding, Scribe, Voice, pinned public MIT
-SDK and binary-only Enki packaging are retained. No private Enki source is added.
+SDK and binary-only Oqelith packaging are retained. No private Oqelith source is added.
 
 | Review finding | Resolution and regression coverage |
 | --- | --- |
@@ -36,5 +36,5 @@ The 1440 px layout was inspected in a headless screenshot. To reproduce it, set
 
 Validation results are recorded in the replacement PR. Native Windows/FreeBSD,
 OCI image construction/publishing, physical audio, signing and production
-acceptance are separate from local Rust/pixel/Python checks. Existing Enki runtime
+acceptance are separate from local Rust/pixel/Python checks. Existing Oqelith runtime
 platform/glibc/lifecycle release blockers remain documented in BUNDLED_ENKI.md.

@@ -1,7 +1,7 @@
-# Bundled Enki runtime (review preview)
+# Bundled Oqelith runtime (review preview)
 
-App packages stage only compiled Enki binaries and license notices from the public
-[Enki-runtime releases](https://github.com/tomblanchard312/Enki-runtime/releases).
+App packages stage only compiled Oqelith binaries and license notices from the public
+[Oqelith-runtime releases](https://github.com/tomblanchard312/Oqelith-runtime/releases).
 The private daemon/worker source and Git history are never fetched by app builds.
 The separately approved MIT client/protocol/speech SDK remains public.
 
@@ -24,7 +24,7 @@ requires AVX2 for text/Whisper inference. It does not satisfy the apps' existing
 Ubuntu 22.04/glibc 2.35 baseline. Packaging rejects an older glibc host. An older
 Linux baseline build and native Windows/macOS/FreeBSD/other-architecture archives
 are required before those targets can release. Missing artifacts block packaging
-rather than silently omit Enki. Private hosted builds are currently blocked before
+rather than silently omit Oqelith. Private hosted builds are currently blocked before
 startup by the GitHub account's billing/spending-limit condition.
 
 Tests: `python3 packaging/test_enki_runtime.py` covers checked binary-only staging,
@@ -34,7 +34,7 @@ assistive-technology behavior still require platform testing. Do not merge this
 review preview as a production release acceptance claim.
 
 Known lifecycle release blocker: the shared daemon currently runs from the app
-that first started it. Stop Enki before updating or uninstalling that provider
+that first started it. Stop Oqelith before updating or uninstalling that provider
 app; otherwise other apps can lose access to its worker files. A shared immutable
 runtime install or tested installer shutdown handoff is required before claiming
 safe live cross-app updates/uninstalls.

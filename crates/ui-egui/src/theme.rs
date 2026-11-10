@@ -123,8 +123,8 @@ pub fn apply(ctx: &egui::Context, t: &Tokens) {
     v.text_edit_bg_color = Some(t.text_field);
     v.faint_bg_color = t.hover;
     v.window_stroke = Stroke::new(1.0, t.card_border);
-    v.window_corner_radius = CornerRadius::same(eridu_style::radius::LARGE);
-    v.menu_corner_radius = CornerRadius::same(eridu_style::radius::MEDIUM);
+    v.window_corner_radius = CornerRadius::same(eridu_style::radius::SURFACE);
+    v.menu_corner_radius = CornerRadius::same(eridu_style::radius::CONTROL);
     v.selection.bg_fill = t.selected;
     v.selection.stroke = Stroke::new(2.0, t.accent);
     v.hyperlink_color = t.accent;
@@ -133,7 +133,7 @@ pub fn apply(ctx: &egui::Context, t: &Tokens) {
     v.warn_fg_color = semantic.warning;
     v.override_text_color = Some(t.text);
     for w in [&mut v.widgets.noninteractive, &mut v.widgets.inactive, &mut v.widgets.hovered, &mut v.widgets.active, &mut v.widgets.open] {
-        w.corner_radius = CornerRadius::same(eridu_style::radius::SMALL);
+        w.corner_radius = CornerRadius::same(eridu_style::radius::CONTROL);
     }
     v.widgets.noninteractive.bg_stroke = Stroke::new(1.0, t.separator);
     v.widgets.inactive.weak_bg_fill = Color32::TRANSPARENT;
@@ -194,26 +194,26 @@ pub fn font_definitions(extra: &[std::sync::Arc<deckcraft_fonts::FontFace>]) -> 
         names.push((f.family, f.style, name));
     }
     for (name, bytes) in [
-        ("eridu-inter", include_bytes!("../../../vendor/eridu-fonts/Inter-Regular.ttf").as_slice()),
-        ("eridu-semibold", include_bytes!("../../../vendor/eridu-fonts/Inter-SemiBold.ttf").as_slice()),
-        ("eridu-numeric", include_bytes!("../../../vendor/eridu-fonts/InterTabular-Regular.ttf").as_slice()),
-        ("eridu-mono", include_bytes!("../../../vendor/eridu-fonts/JetBrainsMono-Regular.ttf").as_slice()),
-        ("phosphor", include_bytes!("../../../vendor/eridu-fonts/phosphor/Phosphor-Regular.ttf").as_slice()),
-        ("phosphor-fill", include_bytes!("../../../vendor/eridu-fonts/phosphor/Phosphor-Fill.ttf").as_slice()),
-        ("eridu-icons", include_bytes!("../../../vendor/eridu-fonts/eridu-icons/EriduIcons-Regular.ttf").as_slice()),
-        ("eridu-icons-fill", include_bytes!("../../../vendor/eridu-fonts/eridu-icons/EriduIcons-Fill.ttf").as_slice()),
+        ("tavru-inter", include_bytes!("../../../vendor/tavru-fonts/Inter-Regular.ttf").as_slice()),
+        ("tavru-semibold", include_bytes!("../../../vendor/tavru-fonts/Inter-SemiBold.ttf").as_slice()),
+        ("tavru-numeric", include_bytes!("../../../vendor/tavru-fonts/InterTabular-Regular.ttf").as_slice()),
+        ("tavru-mono", include_bytes!("../../../vendor/tavru-fonts/JetBrainsMono-Regular.ttf").as_slice()),
+        ("phosphor", include_bytes!("../../../vendor/tavru-fonts/phosphor/Phosphor-Regular.ttf").as_slice()),
+        ("phosphor-fill", include_bytes!("../../../vendor/tavru-fonts/phosphor/Phosphor-Fill.ttf").as_slice()),
+        ("tavru-icons", include_bytes!("../../../vendor/tavru-fonts/tavru-icons/TavruIcons-Regular.ttf").as_slice()),
+        ("tavru-icons-fill", include_bytes!("../../../vendor/tavru-fonts/tavru-icons/TavruIcons-Fill.ttf").as_slice()),
     ] {
         defs.font_data.insert(name.into(), std::sync::Arc::new(FontData::from_static(bytes)));
     }
     let regular = defs.families.entry(FontFamily::Proportional).or_default();
-    regular.splice(0..0, std::iter::once("eridu-inter".into()).chain(names.iter().map(|(_, _, name)| name.clone())));
-    let numeric = std::iter::once("eridu-numeric".into()).chain(regular.iter().cloned()).collect();
+    regular.splice(0..0, std::iter::once("tavru-inter".into()).chain(names.iter().map(|(_, _, name)| name.clone())));
+    let numeric = std::iter::once("tavru-numeric".into()).chain(regular.iter().cloned()).collect();
     defs.families.insert(FontFamily::Name("numeric".into()), numeric);
-    defs.families.entry(FontFamily::Monospace).or_default().insert(0, "eridu-mono".into());
-    defs.families.insert(FontFamily::Name("phosphor".into()), vec!["phosphor".into(), "eridu-icons".into()]);
-    defs.families.insert(FontFamily::Name("phosphor-fill".into()), vec!["phosphor-fill".into(), "eridu-icons-fill".into()]);
+    defs.families.entry(FontFamily::Monospace).or_default().insert(0, "tavru-mono".into());
+    defs.families.insert(FontFamily::Name("phosphor".into()), vec!["phosphor".into(), "tavru-icons".into()]);
+    defs.families.insert(FontFamily::Name("phosphor-fill".into()), vec!["phosphor-fill".into(), "tavru-icons-fill".into()]);
     // A bold family for headings and selected tabs.
-    let mut bold = vec!["eridu-semibold".into()];
+    let mut bold = vec!["tavru-semibold".into()];
     bold.extend(defs.families.get(&FontFamily::Proportional).cloned().unwrap_or_default());
     defs.families.insert(FontFamily::Name("bold".into()), bold);
     // Hack is already bundled for Monospace and covers the interface's arrows and triangles.

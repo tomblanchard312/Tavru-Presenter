@@ -70,10 +70,10 @@ fn title(id: &str) -> &'static str {
         "smartart" => "Choose a SmartArt Graphic",
         "bullets" => "Bullets and Numbering",
         "action" => "Action Settings",
-        "quit" => "Inanna",
+        "quit" => "Tavru Presenter",
         "themeColors" => "Create New Theme Colors",
         "themeFonts" => "Create New Theme Fonts",
-        _ => "Inanna",
+        _ => "Tavru Presenter",
     }
 }
 

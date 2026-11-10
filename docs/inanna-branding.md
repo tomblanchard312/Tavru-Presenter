@@ -16,7 +16,7 @@ Executable names are `inanna` and `inanna-cli`; internal crate names, document e
 
 Updates open the fork's release page for explicit download; the inherited automatic updater and restart helper are removed. No Inanna binary is claimed signed or notarized. The macOS package uses a plain drag-to-Applications DMG rather than an outdated branded background/layout.
 
-Before release, validate native installers, signing and uninstall behavior on their actual operating systems. Also resolve distribution terms for Scribe's Enki SDK dependency, which is currently designated UNLICENSED. Platform claims remain unaccepted until those checks pass.
+Before release, validate native installers, signing and uninstall behavior on their actual operating systems. Also resolve distribution terms for Scribe's Oqelith SDK dependency, which is currently designated UNLICENSED. Platform claims remain unaccepted until those checks pass.
 
 ## Upstream synchronization
 

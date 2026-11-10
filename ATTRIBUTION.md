@@ -89,12 +89,12 @@ in craft-fonts, including the LXGW Reserved Font Names and original Klee notice.
 | `assets/icons/scribe.png` | Nisaba contributors (AI-assisted) | https://github.com/tomblanchard312/Qanloom/blob/3d75b6a77231ade0c906140e16f9ef66613e0b29/assets/icons/scribe.png ; original blue folded-page S with wedge-cut reed tip | MIT OR Apache-2.0 | Scribe button and panel |
 
 
-### Eridu interface assets
+### Tavru interface assets
 
 | Asset | Author | Source | Licence | Use |
 |---|---|---|---|---|
-| `vendor/eridu-fonts/Inter-*.ttf`, `vendor/eridu-fonts/InterTabular-Regular.ttf` | Inter Project Authors and Eridu style contributors | [Eridu style d3b4cdc](https://github.com/tomblanchard312/eridu-style/tree/d3b4cdc03706ac100fae2de907282575652b76ad/fonts) | OFL-1.1 | UI text, headings and tabular figures |
-| `vendor/eridu-fonts/JetBrainsMono-Regular.ttf` | JetBrains Mono Project Authors | Same Eridu style snapshot | OFL-1.1 | Technical UI text |
-| `vendor/eridu-fonts/phosphor/*.ttf` | Phosphor Icons | Phosphor 2.1.1 from the same Eridu style snapshot | MIT | Regular and selected interface icons |
-| `vendor/eridu-fonts/eridu-icons/*.ttf` | Eridu style contributors | Same Eridu style snapshot | MIT | Supplemental icons |
-| `assets/icons/enki.png` | EriduOS contributors | [EriduOS 799db31](https://github.com/tomblanchard312/TavruOS/blob/799db317dd4df4292636c16696d19157896cdb95/integration/code-enki/enki-48.png) | EriduOS project artwork | Enki toolbar and panel mark |
+| `vendor/tavru-fonts/Inter-*.ttf`, `vendor/tavru-fonts/InterTabular-Regular.ttf` | Inter Project Authors and Tavru style contributors | [Tavru style d3b4cdc](https://github.com/tomblanchard312/tavru-style/tree/d3b4cdc03706ac100fae2de907282575652b76ad/fonts) | OFL-1.1 | UI text, headings and tabular figures |
+| `vendor/tavru-fonts/JetBrainsMono-Regular.ttf` | JetBrains Mono Project Authors | Same Tavru style snapshot | OFL-1.1 | Technical UI text |
+| `vendor/tavru-fonts/phosphor/*.ttf` | Phosphor Icons | Phosphor 2.1.1 from the same Tavru style snapshot | MIT | Regular and selected interface icons |
+| `vendor/tavru-fonts/tavru-icons/*.ttf` | Tavru style contributors | Same Tavru style snapshot | MIT | Supplemental icons |
+| `assets/icons/enki.png` | TavruOS contributors | [TavruOS 799db31](https://github.com/tomblanchard312/TavruOS/blob/799db317dd4df4292636c16696d19157896cdb95/integration/code-enki/enki-48.png) | TavruOS project artwork | Oqelith toolbar and panel mark |

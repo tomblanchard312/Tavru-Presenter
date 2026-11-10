@@ -103,7 +103,7 @@ Copy-Item (Join-Path $Bin 'inanna.exe'), (Join-Path $Bin 'inanna-cli.exe') $Stag
 
 # ---- font notices for the MSI ------------------------------------------------------------------
 # The portable ZIP already carries these notices; stage the complete files before MSI creation too.
-Invoke-Native 'stage binary-only Enki runtime' {
+Invoke-Native 'stage binary-only Oqelith runtime' {
   python (Join-Path $Root 'packaging/stage-enki.py') --target $Target --out (Join-Path $Stage 'enki')
 }
 $Docs = Join-Path $Stage 'font-licences'

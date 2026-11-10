@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage a pinned binary-only Enki release; never fetch or build private source."""
+"""Stage a pinned binary-only Oqelith release; never fetch or build private source."""
 import argparse
 import hashlib
 import json
@@ -75,18 +75,18 @@ def main():
     config = json.loads(Path(__file__).with_name('enki-runtime.json').read_text())
     artifact = config['targets'].get(args.target)
     if not artifact:
-        raise ValueError(f'No reviewed Enki binary archive for {args.target}; packaging cannot omit the runtime')
+        raise ValueError(f'No reviewed Oqelith binary archive for {args.target}; packaging cannot omit the runtime')
     if 'linux' in args.target and platform.system() == 'Linux' and artifact.get('build_glibc'):
         library, version = platform.libc_ver()
         if library != 'glibc' or tuple(map(int, version.split('.'))) < tuple(map(int, artifact['build_glibc'].split('.'))):
-            raise ValueError('The reviewed Enki preview requires glibc ' + artifact['build_glibc'] + '; obtain a compatible runtime build before packaging')
+            raise ValueError('The reviewed Oqelith preview requires glibc ' + artifact['build_glibc'] + '; obtain a compatible runtime build before packaging')
     with tempfile.TemporaryDirectory() as temporary:
         archive = Path(temporary) / 'runtime.zip'
         local = os.environ.get('ENKI_RUNTIME_ARCHIVE')
         if local:
             archive = Path(local)
         else:
-            url = f'https://github.com/tomblanchard312/Enki-runtime/releases/download/v{config["version"]}/{artifact["name"]}'
+            url = f'https://github.com/tomblanchard312/Oqelith-runtime/releases/download/v{config["version"]}/{artifact["name"]}'
             with urllib.request.urlopen(url, timeout=120) as response, archive.open('xb') as dest:
                 size = 0
                 while chunk := response.read(1024 * 1024):

@@ -22,15 +22,15 @@ Linux builds need ALSA development headers (`libasound2-dev` on Debian/Ubuntu). 
 
 Internal crate names and `.deckcraft` files retain upstream compatibility. Executables are `inanna` and `inanna-cli`; settings and recovery use a separate Inanna directory. Installers have independent app and upgrade identities. Upstream release downloads and signing claims do not apply to Inanna.
 
-## Enki
+## Oqelith
 
-Open **Enki** from the title bar or the **View** tab for text recommendations, text improvements, layout proposals, image generation and logo generation. It uses the shared folded blue Enki mark. Start a compatible local Enki daemon; Enki selects a local Phi-4 or Qwen model automatically and uses Enki’s image recommendation. Review each proposal before applying. Edits are undoable; changed slides reject stale proposals.
+Open **Oqelith** from the title bar or the **View** tab for text recommendations, text improvements, layout proposals, image generation and logo generation. It uses the shared folded blue Oqelith mark. Start a compatible local Oqelith daemon; Oqelith selects a local Phi-4 or Qwen model automatically and uses Oqelith’s image recommendation. Review each proposal before applying. Edits are undoable; changed slides reject stale proposals.
 
-See [Enki setup and verification](docs/scribe.md). The running app does not download models or install Enki.
+See [Oqelith setup and verification](docs/scribe.md). The running app does not download models or install Oqelith.
 
 ## Direction
 
-- Enki: optional local assistance for outlines, slide text and speaker notes.
+- Oqelith: optional local assistance for outlines, slide text and speaker notes.
 - Nisaba: exchange document outlines, headings, notes and editable text.
 - GridCraft: exchange typed tables and charts with explicit formatting rules.
 - Nabu: PDF handoff and review, using existing PDF export first.
