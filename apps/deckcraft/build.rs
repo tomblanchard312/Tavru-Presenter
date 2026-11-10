@@ -14,8 +14,8 @@ fn main() {
     }
     let mut res = winresource::WindowsResource::new();
     res.set_icon("../../assets/app-icon/deckcraft.ico")
-        .set("ProductName", "Inanna")
-        .set("FileDescription", "Inanna presentations")
+        .set("ProductName", "Tavru Presenter")
+        .set("FileDescription", "Tavru Presenter presentations")
         .set("CompanyName", "tomblanchard312")
         .set("LegalCopyright", "Copyright (c) the DeckCraft authors. MIT OR Apache-2.0.")
         .set("OriginalFilename", "inanna.exe")

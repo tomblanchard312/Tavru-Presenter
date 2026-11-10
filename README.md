@@ -1,8 +1,8 @@
-# Inanna
+# Tavru Presenter
 
-Inanna is a presentation editor forked from [DeckCraft by the ArtCraft team](https://github.com/storytold/deckcraft), preserving its Rust/egui architecture, source history, and open-source licensing.
+Tavru Presenter is a presentation editor forked from [DeckCraft by the ArtCraft team](https://github.com/storytold/deckcraft), preserving its Rust/egui architecture, source history, and open-source licensing.
 
-**Status:** development fork with Inanna app/installer branding and an initial Enki integration. Nisaba, GridCraft and Nabu exchange remains planned. No Inanna binaries have been released or platform compatibility certified.
+**Status:** development fork with Tavru Presenter app/installer branding and an initial Oqelith integration. Tavru Docs, Tavru Sheets and Tavru PDF exchange remains planned. No Tavru Presenter binaries have been released or platform compatibility certified.
 
 The inherited editor includes slides, themes, shapes, charts, speaker notes, slide shows, PowerPoint `.pptx` import/export, PDF export, a CLI and MCP automation. These are upstream capabilities; fidelity and platform behavior need validation in this fork. See the [upstream roadmap](ROADMAP.md) and [Inanna integration roadmap](docs/inanna-roadmap.md).
 
