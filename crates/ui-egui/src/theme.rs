@@ -276,6 +276,14 @@ pub fn to_color32(c: deckcraft_color::Rgba) -> Color32 {
     Color32::from_rgba_unmultiplied(c.r, c.g, c.b, c.a)
 }
 
+/// The display name leaves the stored theme name compatible with existing decks.
+pub(crate) fn theme_display_name(name: &str) -> &str {
+    match name {
+        "DeckCraft" => "Tavru Presenter",
+        _ => name,
+    }
+}
+
 #[cfg(test)]
 fn contrast(first: Color32, second: Color32) -> f32 {
     let luminance = |color: Color32| {
@@ -548,13 +556,5 @@ mod tests {
         for (c, size, ink) in drawn("\u{2013}\u{2014}-_\u{2026}\u{2022}\u{00b7}\u{2018}\u{2019}\u{201c}\u{201d}=~") {
             assert!(ink, "{c:?} ({:04X}) draws nothing at {size} px", c as u32);
         }
-    }
-}
-
-/// The display name leaves the stored theme name compatible with existing decks.
-pub(crate) fn theme_display_name(name: &str) -> &str {
-    match name {
-        "DeckCraft" => "Tavru Presenter",
-        _ => name,
     }
 }
