@@ -57,14 +57,14 @@ pub struct Tokens {
 
 impl Tokens {
     pub fn light() -> Self {
-        Self::from_eridu(eridu_style::LIGHT)
+        Self::from_palette(crate::eridu_design::LIGHT)
     }
 
     pub fn dark() -> Self {
-        Self::from_eridu(eridu_style::DARK)
+        Self::from_palette(crate::eridu_design::DARK)
     }
 
-    fn from_eridu(t: eridu_style::Tokens) -> Self {
+    fn from_palette(t: crate::eridu_design::Palette) -> Self {
         // Rails and unchecked boxes rely on their fill for the entire boundary.
         let control = if t.dark { t.border } else { t.border.lerp_to_gamma(t.text, 0.45) };
         Self {
@@ -89,7 +89,7 @@ impl Tokens {
             contextual: t.accent,
             selection: t.focus,
             handle_fill: Color32::WHITE,
-            handle_stroke: eridu_style::LIGHT.text_muted,
+            handle_stroke: crate::eridu_design::LIGHT.text_muted,
             guide: t.primary,
             caret: Color32::BLACK,
             text_selection: Color32::from_rgba_unmultiplied(t.accent.r(), t.accent.g(), t.accent.b(), 90),
@@ -103,7 +103,7 @@ impl Tokens {
 
     pub fn for_brightness(b: Brightness, ctx: &egui::Context) -> Self {
         match b {
-            Brightness::System if eridu_style::system::prefers_dark(ctx) == Some(true) => Self::dark(),
+            Brightness::System if crate::eridu_design::prefers_dark(ctx) => Self::dark(),
             Brightness::System | Brightness::Light => Self::light(),
             Brightness::Dark => Self::dark(),
         }
@@ -123,17 +123,17 @@ pub fn apply(ctx: &egui::Context, t: &Tokens) {
     v.text_edit_bg_color = Some(t.text_field);
     v.faint_bg_color = t.hover;
     v.window_stroke = Stroke::new(1.0, t.card_border);
-    v.window_corner_radius = CornerRadius::same(eridu_style::radius::LARGE);
-    v.menu_corner_radius = CornerRadius::same(eridu_style::radius::MEDIUM);
+    v.window_corner_radius = CornerRadius::same(crate::eridu_design::radius::LARGE);
+    v.menu_corner_radius = CornerRadius::same(crate::eridu_design::radius::MEDIUM);
     v.selection.bg_fill = t.selected;
     v.selection.stroke = Stroke::new(2.0, t.accent);
     v.hyperlink_color = t.accent;
-    let semantic = if t.dark { eridu_style::DARK } else { eridu_style::LIGHT };
+    let semantic = if t.dark { crate::eridu_design::DARK } else { crate::eridu_design::LIGHT };
     v.error_fg_color = semantic.danger;
     v.warn_fg_color = semantic.warning;
     v.override_text_color = Some(t.text);
     for w in [&mut v.widgets.noninteractive, &mut v.widgets.inactive, &mut v.widgets.hovered, &mut v.widgets.active, &mut v.widgets.open] {
-        w.corner_radius = CornerRadius::same(eridu_style::radius::SMALL);
+        w.corner_radius = CornerRadius::same(crate::eridu_design::radius::SMALL);
     }
     v.widgets.noninteractive.bg_stroke = Stroke::new(1.0, t.separator);
     v.widgets.inactive.weak_bg_fill = Color32::TRANSPARENT;
@@ -150,13 +150,13 @@ pub fn apply(ctx: &egui::Context, t: &Tokens) {
     ctx.set_theme(if t.dark { egui::Theme::Dark } else { egui::Theme::Light });
     ctx.set_visuals(v);
     ctx.global_style_mut(|s| {
-        s.spacing.item_spacing = egui::vec2(eridu_style::space::SM, eridu_style::space::XS);
-        s.spacing.button_padding = egui::vec2(eridu_style::space::SM, eridu_style::space::XS);
+        s.spacing.item_spacing = egui::vec2(crate::eridu_design::space::SM, crate::eridu_design::space::XS);
+        s.spacing.button_padding = egui::vec2(crate::eridu_design::space::SM, crate::eridu_design::space::XS);
         s.spacing.interact_size.y = 22.0;
-        s.text_styles.insert(egui::TextStyle::Body, egui::FontId::proportional(eridu_style::size::BODY));
-        s.text_styles.insert(egui::TextStyle::Button, egui::FontId::proportional(eridu_style::size::BODY));
-        s.text_styles.insert(egui::TextStyle::Small, egui::FontId::proportional(eridu_style::size::CAPTION));
-        s.text_styles.insert(egui::TextStyle::Heading, bold(eridu_style::size::SECTION_HEADING));
+        s.text_styles.insert(egui::TextStyle::Body, egui::FontId::proportional(crate::eridu_design::size::BODY));
+        s.text_styles.insert(egui::TextStyle::Button, egui::FontId::proportional(crate::eridu_design::size::BODY));
+        s.text_styles.insert(egui::TextStyle::Small, egui::FontId::proportional(crate::eridu_design::size::CAPTION));
+        s.text_styles.insert(egui::TextStyle::Heading, bold(crate::eridu_design::size::SECTION_HEADING));
     });
 }
 
@@ -277,6 +277,17 @@ pub fn to_color32(c: deckcraft_color::Rgba) -> Color32 {
 }
 
 #[cfg(test)]
+fn contrast(first: Color32, second: Color32) -> f32 {
+    let luminance = |color: Color32| {
+        let [r, g, b, _] = egui::Rgba::from(color).to_array();
+        0.2126 * r + 0.7152 * g + 0.0722 * b
+    };
+    let a = luminance(first);
+    let b = luminance(second);
+    (a.max(b) + 0.05) / (a.min(b) + 0.05)
+}
+
+#[cfg(test)]
 mod tests {
     use super::*;
 
@@ -328,11 +339,20 @@ mod tests {
     }
 
     #[test]
+    fn local_palette_matches_tavru_workspace_colors() {
+        let dark = Tokens::dark();
+        let light = Tokens::light();
+        assert_eq!(dark.card, Color32::from_rgb(25, 26, 42));
+        assert_eq!(dark.primary, Color32::from_rgb(124, 58, 237));
+        assert_eq!(light.primary, Color32::from_rgb(109, 40, 217));
+    }
+
+    #[test]
     fn eridu_chrome_text_and_actions_meet_aa_contrast() {
         for t in [super::Tokens::light(), super::Tokens::dark()] {
             for surface in [t.chrome, t.card] {
-                assert!(eridu_style::contrast(t.control, surface) >= 3.0);
-                assert!(eridu_style::contrast(t.accent, surface) >= 3.0);
+                assert!(contrast(t.control, surface) >= 3.0);
+                assert!(contrast(t.accent, surface) >= 3.0);
             }
             for (ink, surface) in [
                 (t.text, t.chrome),
@@ -343,7 +363,7 @@ mod tests {
                 (t.on_primary, t.primary),
                 (t.accent_text, t.accent),
             ] {
-                assert!(eridu_style::contrast(ink, surface) >= 4.5, "{ink:?} on {surface:?}");
+                assert!(contrast(ink, surface) >= 4.5, "{ink:?} on {surface:?}");
             }
         }
     }
@@ -494,7 +514,7 @@ mod tests {
         );
         assert_eq!(text, "deck שלום 42");
         ctx.fonts_mut(|fonts| {
-            let galley = fonts.layout_no_wrap(text.clone(), egui::FontId::proportional(eridu_style::size::BODY), egui::Color32::WHITE);
+            let galley = fonts.layout_no_wrap(text.clone(), egui::FontId::proportional(crate::eridu_design::size::BODY), egui::Color32::WHITE);
             let row = &galley.rows[0];
             let x = |c| row.glyphs.iter().find(|g| g.chr == c).unwrap().pos.x;
             assert!(x('ש') > x('ל') && x('ל') > x('ו') && x('ו') > x('ם'), "Hebrew paints in visual RTL order");

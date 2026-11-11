@@ -15,6 +15,7 @@ pub mod capture;
 pub mod control;
 pub mod dialogs;
 pub mod doc_window;
+mod eridu_design;
 pub mod eyedropper;
 pub mod icons;
 pub mod media;

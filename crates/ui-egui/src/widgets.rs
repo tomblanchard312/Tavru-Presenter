@@ -270,7 +270,7 @@ pub fn icon_toggle(ui: &mut Ui, icon: Icon, tip: &str, enabled: bool, on: bool) 
     }
     icons::paint_state(&painter, rect.shrink(3.0), icon, t.text, !enabled, on);
     if resp.has_focus() {
-        painter.rect_stroke(rect, CornerRadius::same(eridu_style::radius::SMALL), Stroke::new(2.0, t.accent), egui::StrokeKind::Inside);
+        painter.rect_stroke(rect, CornerRadius::same(crate::eridu_design::radius::SMALL), Stroke::new(2.0, t.accent), egui::StrokeKind::Inside);
     }
     // Named for screen readers (and tests) by its tooltip.
     resp.widget_info(|| egui::WidgetInfo::labeled(egui::Role::Button, enabled, tip));
