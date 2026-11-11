@@ -166,7 +166,7 @@ fn every_page_renders() {
         (Page::SaveAs, "Not saved yet"),
         (Page::Print, "Print Hidden Slides"),
         (Page::Export, "Create PDF Document"),
-        (Page::Account, "About Inanna"),
+        (Page::Account, "About Tavru Presenter"),
     ];
     for (p, marker) in checks {
         h.state_mut().run("app.backstage", json!({"page": p.id()})).unwrap();
@@ -191,7 +191,7 @@ fn new_tiles_keep_the_right_margin_in_a_narrow_window() {
     );
     h.state_mut().run("app.backstage", json!({"page": "new"})).unwrap();
     h.run_steps(3);
-    let tiles = ["DeckCraft", "Harbor", "Ember", "Meadow", "Nocturne", "Paper", "Briefing"];
+    let tiles = ["Tavru Presenter", "Harbor", "Ember", "Meadow", "Nocturne", "Paper", "Briefing"];
     for label in tiles {
         let r = h.get_by_label(label).rect();
         assert!(r.right() <= 1000.0 - 36.0, "{label} ends at {}, inside the 36pt right margin", r.right());
@@ -594,7 +594,7 @@ fn a_file_that_cant_be_opened_says_why() {
     }
     h.run_steps(2);
     assert!(h.state().session.documents().is_empty());
-    assert!(h.query_by_label_contains("not a presentation Inanna can read").is_some(), "the error is on screen");
+    assert!(h.query_by_label_contains("not a presentation Tavru Presenter can read").is_some(), "the error is on screen");
     let _ = std::fs::remove_dir_all(&dir);
 }
 

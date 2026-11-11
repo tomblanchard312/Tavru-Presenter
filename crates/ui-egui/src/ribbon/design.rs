@@ -23,7 +23,7 @@ pub(super) fn design(app: &mut SlideApp, ui: &mut Ui) {
                     paint_theme_tile(p, r, th);
                 }
             },
-            |i| names.get(i).cloned().unwrap_or_default(),
+            |i| names.get(i).map(|name| theme::theme_display_name(name).to_owned()).unwrap_or_default(),
         ) && let Some(n) = names.get(i)
         {
             run(app, "design.theme", json!({"name": n}));
@@ -49,7 +49,7 @@ pub(super) fn design(app: &mut SlideApp, ui: &mut Ui) {
                         paint_theme_tile(p, r, t);
                     }
                 },
-                |i| names.get(i).cloned().unwrap_or_default(),
+                |i| names.get(i).map(|name| theme::theme_display_name(name).to_owned()).unwrap_or_default(),
             ) {
                 run(app, "design.variant", json!({"index": i}));
             }
