@@ -7,9 +7,6 @@ name: "Gate"
 # inputs: an app's workflows only call this repository's workflows.
 on:
   workflow_call:
-    secrets:
-      eridu-style-key:
-        required: true
     inputs:
       packages:
         description: "Ubuntu packages the build needs, separated by spaces or newlines; installed on Linux legs through the cached install-apt-packages action. Empty installs none (Windows-only calls, wasm builds)"
@@ -115,9 +112,6 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: ./.github/actions/fetch-eridu-style
-        with:
-          ssh-key: ${{ secrets.eridu-style-key }}
 
       - name: Check out craft-fonts
         if: inputs.craft-fonts-ref != ''

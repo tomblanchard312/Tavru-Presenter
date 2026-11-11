@@ -6,6 +6,8 @@ use serde_json::{Value, json};
 use sharedai_client::{Cancellation, ChatMessage, Client, GenerateParams, ImageRequest};
 use std::sync::mpsc::{self, Receiver, TryRecvError};
 
+// Phosphor ChatText in the bundled regular font.
+const CHAT_TEXT: &str = "\u{e17a}";
 const MAX_TEXT: usize = 32 * 1024;
 
 #[derive(Clone, Copy, Default, PartialEq, Eq)]
@@ -209,7 +211,7 @@ fn infer(task: Task, prompt: String, context: String, ideas: Value, model: Strin
 }
 
 pub(crate) fn button(app: &mut SlideApp, ui: &mut egui::Ui) {
-    let icon = egui::RichText::new(eridu_style::glyph::CHAT_TEXT).font(egui::FontId::new(20.0, egui::FontFamily::Name("phosphor".into())));
+    let icon = egui::RichText::new(CHAT_TEXT).font(egui::FontId::new(20.0, egui::FontFamily::Name("phosphor".into())));
     let response = ui.add(egui::Button::new((icon, "Ask")));
     if response.on_hover_text("Local text, layout and image assistance").clicked() {
         let _ = app.run("app.scribe", json!({"on": !app.scribe.open}));
@@ -264,9 +266,7 @@ fn apply(app: &mut SlideApp) -> Result<(), String> {
         Output::Text(text) if t.shape.is_some() => ("text.set", json!({"id": t.shape, "text": text})),
         Output::Text(text) => ("insert.textBox", json!({"text": text})),
         Output::Layout(id, _) => ("design.applyIdea", json!({"id": id})),
-        Output::Picture(png) => {
-            ("insert.picture", json!({"data": base64::engine::general_purpose::STANDARD.encode(png), "name":"Generated image"}))
-        }
+        Output::Picture(png) => ("insert.picture", json!({"data": base64::engine::general_purpose::STANDARD.encode(png), "name":"Generated image"})),
     };
     app.run(command, params).map_err(|e| e.to_string())?;
     app.scribe.output = None;
@@ -308,7 +308,7 @@ pub(crate) fn show(app: &mut SlideApp, ui: &mut egui::Ui) {
         let s = &mut app.scribe;
         egui::ScrollArea::vertical().show(ui, |ui| {
             ui.horizontal(|ui| {
-                ui.label(egui::RichText::new(eridu_style::glyph::CHAT_TEXT).font(egui::FontId::new(24.0, egui::FontFamily::Name("phosphor".into()))));
+                ui.label(egui::RichText::new(CHAT_TEXT).font(egui::FontId::new(24.0, egui::FontFamily::Name("phosphor".into()))));
                 ui.heading("Ask");
                 if ui.button("Close").clicked() {
                     s.open = false;
@@ -317,7 +317,7 @@ pub(crate) fn show(app: &mut SlideApp, ui: &mut egui::Ui) {
             ui.label("Presentation assistant");
             ui.small(scope.unwrap_or("Open a slide to start"));
             ui.small("Works locally on your device. Changes are applied only after your review.");
-            ui.add_space(eridu_style::space::MD);
+            ui.add_space(crate::eridu_design::space::MD);
             let busy = s.job.is_some();
             ui.add_enabled_ui(!busy, |ui| {
                 craft_ui::ComboBox::from_label("Task").selected_text(s.task.label()).show_ui(ui, |ui| {
@@ -326,8 +326,10 @@ pub(crate) fn show(app: &mut SlideApp, ui: &mut egui::Ui) {
                     }
                 });
                 let label = ui.label("Prompt");
-                ui.add(egui::TextEdit::multiline(&mut s.prompt).hint_text("What would you like to create or improve?").char_limit(2000).desired_rows(4))
-                    .labelled_by(label.id);
+                ui.add(
+                    egui::TextEdit::multiline(&mut s.prompt).hint_text("What would you like to create or improve?").char_limit(2000).desired_rows(4),
+                )
+                .labelled_by(label.id);
                 generate = ui
                     .add_enabled(
                         scope.is_some() && !s.prompt.trim().is_empty(),
@@ -351,7 +353,7 @@ pub(crate) fn show(app: &mut SlideApp, ui: &mut egui::Ui) {
             }
             ui.separator();
             if let Some(output) = &mut s.output {
-                ui.label(egui::RichText::new("Draft proposal").font(crate::theme::bold(eridu_style::size::CARD_HEADING)));
+                ui.label(egui::RichText::new("Draft proposal").font(crate::theme::bold(crate::eridu_design::size::CARD_HEADING)));
                 ui.small("Review before applying");
                 match output {
                     Output::Text(text) => {

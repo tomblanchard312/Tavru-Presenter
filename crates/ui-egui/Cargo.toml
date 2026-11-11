@@ -20,7 +20,6 @@ deckcraft-engine = { workspace = true }
 deckcraft-media = { workspace = true }
 egui = { workspace = true, features = ["default_fonts", "monochrome_emoji_fonts"] }
 craft-ui = { workspace = true }
-eridu-style = { git = "https://github.com/tomblanchard312/tavru-style.git", rev = "97efe362bb37da690f58bc953fba03d4b9ba2c21" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 log = { workspace = true }
@@ -46,3 +45,6 @@ toml = "1"
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies.enki-speech-ui]
 git = "https://github.com/tomblanchard312/Qanloom.git"
 rev = "d26daada860f8ed9d006d95c7b503515128974c3"
+
+[target.'cfg(any(target_os = "linux", target_os = "freebsd"))'.dependencies]
+zbus = "5"
