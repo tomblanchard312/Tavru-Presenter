@@ -33,8 +33,10 @@ fn tile(ui: &mut Ui, label: &str, theme: Option<&deckcraft_model::Theme>, big: b
 /// `blank`); at most `limit` theme tiles. False when nothing matched.
 fn new_tiles(app: &mut SlideApp, ui: &mut Ui, query: &str, limit: usize, blank: bool) -> bool {
     let q = query.trim().to_lowercase();
-    let themes: Vec<deckcraft_model::Theme> =
-        deckcraft_model::theme::builtin_themes().into_iter().filter(|th| q.is_empty() || th.name.to_lowercase().contains(&q)).collect();
+    let themes: Vec<_> = deckcraft_model::theme::builtin_themes()
+        .into_iter()
+        .filter(|th| q.is_empty() || theme::theme_display_name(&th.name).to_lowercase().contains(&q))
+        .collect();
     let sample = q.is_empty() || "sample deck northern lights".contains(&q);
     if themes.is_empty() && !sample {
         return false;
@@ -49,7 +51,7 @@ fn new_tiles(app: &mut SlideApp, ui: &mut Ui, query: &str, limit: usize, blank: 
             if shown >= limit {
                 break;
             }
-            if tile(ui, &th.name, Some(&th), false).clicked() {
+            if tile(ui, theme::theme_display_name(&th.name), Some(&th), false).clicked() {
                 let _ = app.run("file.new", json!({"theme": th.name}));
             }
             shown += 1;
@@ -210,7 +212,7 @@ pub(super) fn home(app: &mut SlideApp, ui: &mut Ui, bs: &mut Backstage, out: &mu
     ui.horizontal(|ui| {
         let (r, _) = ui.allocate_exact_size(vec2(36.0, 36.0), Sense::hover());
         crate::dialogs::paint_logo(ui.painter(), r);
-        ui.label(RichText::new("Inanna").font(theme::bold(24.0)).color(t.text));
+        ui.label(RichText::new("Tavru Presenter").font(theme::bold(24.0)).color(t.text));
     });
     ui.add_space(18.0);
     ui.horizontal(|ui| {
@@ -252,7 +254,7 @@ pub(super) fn home(app: &mut SlideApp, ui: &mut Ui, bs: &mut Backstage, out: &mu
         });
     }
     ui.add_space(30.0);
-    ui.hyperlink_to("Inanna support", deckcraft_engine::links::DISCORD);
+    ui.hyperlink_to("Tavru Presenter support", deckcraft_engine::links::DISCORD);
 }
 
 /// New: a blank presentation, then every theme and starter template, with a search box.

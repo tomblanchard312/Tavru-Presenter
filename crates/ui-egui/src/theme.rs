@@ -530,3 +530,11 @@ mod tests {
         }
     }
 }
+
+/// The display name leaves the stored theme name compatible with existing decks.
+pub(crate) fn theme_display_name(name: &str) -> &str {
+    match name {
+        "DeckCraft" => "Tavru Presenter",
+        _ => name,
+    }
+}

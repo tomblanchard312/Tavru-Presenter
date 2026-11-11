@@ -239,7 +239,7 @@ impl SlideApp {
                     self.scribe.open = p.get("on").and_then(Value::as_bool).unwrap_or(true);
                 }
                 #[cfg(target_arch = "wasm32")]
-                return Err("Enki is available in the desktop app".into());
+                return Err("Ask is available in the desktop app".into());
             }
             "app.about" => self.dialog = Some(dialogs::Dialog::new("about")),
             "app.checkUpdates" => {
