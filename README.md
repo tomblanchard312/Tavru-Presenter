@@ -10,6 +10,10 @@ Latest upstream integration: [DeckCraft synchronization, 2026-11-02](docs/upstre
 
 [EriduOS interface brief](docs/ERIDU_INTERFACE.md)
 
+![Tavru Presenter home page with themes and templates](docs/images/tavru-mvp-vm.png)
+
+*Captured from an installed TavruOS MVP in a disposable VM.*
+
 ## Build from source
 
 ```sh
