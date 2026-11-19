@@ -37,4 +37,4 @@ The 1440 px layout was inspected in a headless screenshot. To reproduce it, set
 Validation results are recorded in the replacement PR. Native Windows/FreeBSD,
 OCI image construction/publishing, physical audio, signing and production
 acceptance are separate from local Rust/pixel/Python checks. Existing Enki runtime
-platform/glibc/lifecycle release blockers remain documented in BUNDLED_ENKI.md.
+platform/glibc/lifecycle release blockers remain documented in BUNDLED_OQELITH.md.

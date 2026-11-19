@@ -1,4 +1,4 @@
-//! Eridu Design System adapter and fonts for the UI.
+//! Tavru design system adapter and fonts for the UI.
 
 use egui::{Color32, CornerRadius, FontData, FontDefinitions, FontFamily, Stroke, Visuals};
 use serde::{Deserialize, Serialize};
@@ -160,7 +160,7 @@ pub fn apply(ctx: &egui::Context, t: &Tokens) {
     });
 }
 
-/// UI fonts from the approved Eridu subset, with Craft script and egui fallbacks.
+/// UI fonts from the approved Tavru subset, with Craft script and egui fallbacks.
 pub fn install_fonts(ctx: &egui::Context) {
     install_fonts_with(ctx, &[]);
 }
