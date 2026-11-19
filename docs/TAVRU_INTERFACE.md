@@ -8,7 +8,7 @@ The GUI uses local semantic colors and sizing from the pinned Tavru style revisi
 
 Linux is the primary validation platform. FreeBSD is a secondary target. Windows, macOS and the browser are existing build targets with separate runtime acceptance. Illumos remains planned.
 
-[Eridu interface requirements](https://github.com/tomblanchard312/TavruOS/blob/53133f86434676a5bdcb249556d3c11b50e600e4/design-system/INTERFACE_RULES.md) · [Style guide](https://github.com/tomblanchard312/TavruOS/blob/53133f86434676a5bdcb249556d3c11b50e600e4/design-system/STYLE_GUIDE.md) · [Adoption checklist](https://github.com/tomblanchard312/TavruOS/blob/53133f86434676a5bdcb249556d3c11b50e600e4/design-system/ADOPTION.md)
+[Shared interface requirements](https://github.com/tomblanchard312/TavruOS/blob/53133f86434676a5bdcb249556d3c11b50e600e4/design-system/INTERFACE_RULES.md) · [Style guide](https://github.com/tomblanchard312/TavruOS/blob/53133f86434676a5bdcb249556d3c11b50e600e4/design-system/STYLE_GUIDE.md) · [Adoption checklist](https://github.com/tomblanchard312/TavruOS/blob/53133f86434676a5bdcb249556d3c11b50e600e4/design-system/ADOPTION.md)
 
 ## Review evidence
 
@@ -18,15 +18,15 @@ contrast, focus color contrast, and ribbon visibility at the tested widths.
 The browser entry point compiled for WebAssembly. The light and dark editor
 screenshots were inspected at 1440 × 900 using the headless test harness.
 
-The native Inanna debug build ran in an EriduOS live guest under KDE Plasma
-Wayland. With Enki open and the app set to System appearance, the same process
+The native Inanna debug build ran in a historical live guest under KDE Plasma
+Wayland. With the assistant open and the app set to System appearance, the same process
 followed Breeze Light to Breeze Dark. At 200% KDE output scaling on a 1920 ×
-1080 display, the ribbon, slide canvas, status bar, and Enki prompt and Generate
+1080 display, the ribbon, slide canvas, status bar, and the assistant prompt and Generate
 button remained visible. This run exercised the editor and assistant panel.
 
 ## Adoption still to verify
 
 | Scope | Owner | Reason and follow-up |
 |---|---|---|
-| Specialized icons and display type | Inanna maintainers | Office commands without a matching Phosphor glyph retain their original icon. The compact ribbon keeps its sizing and large headings use Inter Semibold under the Source Serif asset exclusion. [Eridu typography tracking](https://github.com/tomblanchard312/TavruOS/issues/27) |
+| Specialized icons and display type | Inanna maintainers | Office commands without a matching Phosphor glyph retain their original icon. The compact ribbon keeps its sizing and large headings use Inter Semibold under the Source Serif asset exclusion. [Typography tracking](https://github.com/tomblanchard312/TavruOS/issues/27) |
 | Native accessibility and workflow acceptance | Inanna maintainers | Test screen readers, reduced motion, localized text expansion, and FreeBSD installation. Track findings using the adoption checklist linked above. |
