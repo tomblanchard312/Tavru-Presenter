@@ -21,6 +21,7 @@ deckcraft-media = { workspace = true }
 egui = { workspace = true, features = ["default_fonts", "monochrome_emoji_fonts"] }
 craft-ui = { workspace = true }
 eridu-style = { package = "eridu-style", git = "https://github.com/tomblanchard312/tavru-style", rev = "97efe362bb37da690f58bc953fba03d4b9ba2c21" }
+tavru-layout-core = { git = "https://github.com/tomblanchard312/TavruLayout.git", rev = "b7fe335f18a618bfbdc4d61df165a3c7a2cbec1c", version = "=0.2.0" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 log = { workspace = true }

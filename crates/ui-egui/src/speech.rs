@@ -2,6 +2,7 @@ use crate::{SlideApp, ViewMode};
 use enki_speech_ui::{Action, VoiceCommand};
 use serde_json::json;
 pub(crate) fn show(app: &mut SlideApp, ctx: &egui::Context) {
+    crate::daemon::launch_when_open(app.speech.open);
     let notes = app.ui.view == ViewMode::NotesPage;
     let scope = app.session.active().map(|d| format!("{}:{}:{}:{notes}", d.uid, d.revision, d.selection.slide)).unwrap_or_default();
     let Some(action) = app.speech.show(ctx, &scope, if notes { "Append to speaker notes" } else { "Insert slide text" }) else { return };

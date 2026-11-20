@@ -1,6 +1,6 @@
-# Eridu Typography Standard v1
+# Tavru Presenter typography
 
-Adopt **Inter** (SIL OFL) as the default application UI font, in coordination with [Eridu OS issue #27](https://github.com/tomblanchard312/TavruOS/issues/27).
+Adopt **Inter** (SIL OFL) as the default application UI font, in coordination with [Typography tracking issue](https://github.com/tomblanchard312/TavruOS/issues/27).
 
 - Use Inter 400 for body, 500 for controls, 600 for headings. Define semantic typography tokens for font family, size, weight, line height and spacing.
 - Suggested UI sizes: 10.5–11 pt body, 10.5 pt menus, 11 pt window titles, 14–16 pt headings, adapted to toolkit DPI scaling.

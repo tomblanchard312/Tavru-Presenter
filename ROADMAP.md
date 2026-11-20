@@ -1,4 +1,4 @@
-> Inanna fork: this document records the inherited DeckCraft baseline. See [Inanna integration roadmap](docs/inanna-roadmap.md) for fork plans and validation gates.
+> Tavru Presenter fork (formerly Inanna): this document records the inherited DeckCraft baseline. See the [integration roadmap](docs/inanna-roadmap.md) for fork plans and validation gates. The roadmap filename is unchanged.
 
 # DeckCraft roadmap
 

@@ -37,4 +37,4 @@ Native Windows/macOS/FreeBSD
 installation, browser popup behavior, real audio, signing and publishing require
 separate acceptance; compilation and automated tests do not establish those.
 Existing Oqelith runtime platform/glibc/AVX2 and cross-app lifecycle release blockers
-remain documented in BUNDLED_ENKI.md. Keep the PR unmerged for review.
+remain documented in BUNDLED_OQELITH.md. Keep the PR unmerged for review.

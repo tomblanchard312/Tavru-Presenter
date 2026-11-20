@@ -14,6 +14,7 @@ deckcraft-fonts = { workspace = true }
 deckcraft-text = { workspace = true }
 deckcraft-render = { workspace = true }
 craft-pdf = { workspace = true }
+tavru-layout-core = { git = "https://github.com/tomblanchard312/TavruLayout.git", rev = "b7fe335f18a618bfbdc4d61df165a3c7a2cbec1c", version = "=0.2.0" }
 kurbo = { workspace = true }
 serde = { workspace = true }
 thiserror = { workspace = true }

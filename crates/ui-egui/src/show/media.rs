@@ -1,4 +1,4 @@
-use super::render::fit;
+use super::render::fit_pixels;
 use super::{Click, HitShape, Hyperlink, PlacedShape, Presentation, Rect, ShapeId, Show, SlideApp, Ui, pos2, vec2};
 use deckcraft_anim::AnimState;
 
@@ -67,7 +67,7 @@ pub(super) fn run_media_cues(app: &mut SlideApp, show: &mut Show, doc_uid: u64, 
 pub(super) fn shown_slide_rect(ui: &Ui, show: &Show, doc: &Presentation) -> Rect {
     let full = ui.max_rect();
     let avail = if show.reading { Rect::from_min_max(full.min, pos2(full.max.x, full.max.y - 34.0)) } else { full };
-    fit(avail, doc)
+    fit_pixels(avail, doc, ui.ctx().pixels_per_point())
 }
 
 /// Playback bar for one clip: along the bottom inside a large shape, just under a small icon.
@@ -127,7 +127,7 @@ pub(super) fn media_hit(ctx: &egui::Context, ui: &Ui, show: &Show, doc: &Present
     let p = ctx.input(|i| i.pointer.interact_pos())?;
     let full = ui.max_rect();
     let avail = if show.reading { Rect::from_min_max(full.min, pos2(full.max.x, full.max.y - 34.0)) } else { full };
-    let srect = fit(avail, doc);
+    let srect = fit_pixels(avail, doc, ui.ctx().pixels_per_point());
     let k = srect.width() / doc.slide_size.width.max(1.0) as f32;
     crate::media::slide_media(doc, show.state.slide).into_iter().rev().find_map(|(id, x, clip)| {
         let r = Rect::from_min_size(pos2(srect.min.x + x.x as f32 * k, srect.min.y + x.y as f32 * k), vec2(x.w as f32 * k, x.h as f32 * k));
@@ -185,7 +185,7 @@ pub(super) fn shapes_under_pointer(ctx: &egui::Context, ui: &Ui, show: &mut Show
     let p = ctx.input(|i| i.pointer.hover_pos())?;
     let full = ui.max_rect();
     let avail = if show.reading { Rect::from_min_max(full.min, pos2(full.max.x, full.max.y - 34.0)) } else { full };
-    let srect = fit(avail, doc);
+    let srect = fit_pixels(avail, doc, ui.ctx().pixels_per_point());
     let k = (srect.width() / doc.slide_size.width.max(1.0) as f32) as f64;
     let (x, y) = ((p.x - srect.min.x) as f64 / k, (p.y - srect.min.y) as f64 / k);
     let i = show.state.slide;
@@ -265,7 +265,7 @@ pub(super) fn gif_hit(ctx: &egui::Context, ui: &Ui, show: &Show, doc_uid: u64, d
     let p = ctx.input(|i| i.pointer.interact_pos())?;
     let full = ui.max_rect();
     let avail = if show.reading { Rect::from_min_max(full.min, pos2(full.max.x, full.max.y - 34.0)) } else { full };
-    let srect = fit(avail, doc);
+    let srect = fit_pixels(avail, doc, ui.ctx().pixels_per_point());
     let k = srect.width() / doc.slide_size.width.max(1.0) as f32;
     let gifs = app.media.gifs(doc_uid, doc, show.state.slide, ctx.input(|i| i.time), &app.session.gif_paused);
     gifs.iter().rev().find(|g| crate::media::gif_button_rect(on_screen(srect, k, &g.rect)).contains(p)).map(|g| g.id)

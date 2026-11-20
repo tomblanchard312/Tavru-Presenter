@@ -101,25 +101,20 @@ impl Textures {
     }
 }
 
-/// Snap `rect` onto the physical pixel grid.
+/// Snap `rect` onto the physical pixel grid with Tavru layout.
 ///
 /// The editor draws the slide as a texture of device pixels. A rect that starts or ends
 /// between pixels is sampled with a linear filter, so every glyph edge is a blend of two
 /// texels and small text looks soft. On a Retina display that offset is half a point, which
 /// is the whole edge of an editing-size glyph. The slide show draws much larger glyphs, so
-/// the same blend is not visible there (#184).
+/// the same blend is not visible there (#184). Edges are rounded independently, so tiles
+/// that share an edge still share it.
 pub fn device_pixel_rect(rect: egui::Rect, ppp: f32) -> egui::Rect {
-    if !ppp.is_finite() || ppp <= 0.0 || !rect.is_finite() {
+    if !rect.is_finite() {
         return rect;
     }
-    let snap = |v: f32| {
-        let p = v * ppp;
-        if p.is_finite() { p.round() / ppp } else { v }
-    };
-    let min = egui::pos2(snap(rect.min.x), snap(rect.min.y));
-    let step = 1.0 / ppp;
-    let max = egui::pos2(snap(rect.max.x).max(min.x + step), snap(rect.max.y).max(min.y + step));
-    egui::Rect::from_min_max(min, max)
+    let aligned = tavru_layout_core::Rect::new(rect.min.x, rect.min.y, rect.width(), rect.height()).pixel_aligned(ppp);
+    egui::Rect::from_min_size(egui::pos2(aligned.x, aligned.y), egui::vec2(aligned.width, aligned.height))
 }
 
 /// Editor slide textures. Nearest magnification keeps a texel that is stretched by a

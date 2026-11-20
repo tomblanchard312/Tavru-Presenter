@@ -498,6 +498,17 @@ impl Backdrops {
 /// Most pixels one slide raster may have; it is RGBA, and the backdrop and the content are two rasters.
 const MAX_RASTER_PIXELS: f64 = 64_000_000.0;
 
+/// Move `b` onto the device-pixel grid at `dpi`, using Tavru layout. Shared edges stay shared,
+/// and the raster drawn into the box is one texel per device pixel.
+fn pixel_box(b: Rect, dpi: f64) -> Rect {
+    let ppp = (dpi / 72.0) as f32;
+    let aligned = tavru_layout_core::Rect::new(b.x0 as f32, b.y0 as f32, b.width() as f32, b.height() as f32).pixel_aligned(ppp);
+    if !aligned.valid() {
+        return b;
+    }
+    Rect::new(aligned.x as f64, aligned.y as f64, aligned.right() as f64, aligned.bottom() as f64)
+}
+
 /// Render scale for a slide of `slide` units drawn `box_width` points wide at `dpi`, with the total pixel count capped.
 fn raster_scale(box_width: f64, slide: (f64, f64), dpi: f64) -> f64 {
     let scale = (box_width / 72.0 * dpi.clamp(36.0, 600.0)) / slide.0;
@@ -517,6 +528,7 @@ impl Exporter<'_> {
 
     /// Slide `i` drawn into `b` (page points).
     fn slide(&mut self, s: &mut Surface, i: usize, b: Rect) -> Result<()> {
+        let b = pixel_box(b, self.opts.dpi);
         let pres = self.pres;
         let (sw, sh) = (pres.slide_size.width.max(1.0), pres.slide_size.height.max(1.0));
         let k = b.width() / sw;

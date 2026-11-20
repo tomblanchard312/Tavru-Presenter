@@ -151,6 +151,11 @@ pub(super) fn fit(avail: Rect, doc: &Presentation) -> Rect {
     Rect::from_center_size(avail.center(), vec2(sw * s, sh * s))
 }
 
+/// [`fit`] with each edge on a device pixel, so the slide image is not resampled between texels.
+pub(super) fn fit_pixels(avail: Rect, doc: &Presentation, pixels_per_point: f32) -> Rect {
+    crate::textures::device_pixel_rect(fit(avail, doc), pixels_per_point)
+}
+
 /// A transition layer as an egui mesh: [`deckcraft_anim::layer_mesh`]'s triangles (perspective
 /// cards subdivided so their pictures stay straight) with per-vertex opacity.
 /// Where presenter view's "Next" preview goes: the column's width below its label, kept inside

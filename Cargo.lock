@@ -1163,6 +1163,7 @@ dependencies = [
  "kurbo",
  "log",
  "serde",
+ "tavru-layout-core",
  "thiserror 2.0.21",
  "wasm-bindgen-test",
 ]
@@ -1242,6 +1243,7 @@ dependencies = [
  "sharedai-client 0.1.0",
  "sharedai-protocol 0.1.0",
  "skrifa 0.47.0",
+ "tavru-layout-core",
  "tokio",
  "toml",
  "web-time",
@@ -4670,6 +4672,14 @@ dependencies = [
  "libc",
  "wasm-bindgen",
  "web-sys",
+]
+
+[[package]]
+name = "tavru-layout-core"
+version = "0.2.0"
+source = "git+https://github.com/tomblanchard312/TavruLayout.git?rev=b7fe335f18a618bfbdc4d61df165a3c7a2cbec1c#b7fe335f18a618bfbdc4d61df165a3c7a2cbec1c"
+dependencies = [
+ "serde",
 ]
 
 [[package]]

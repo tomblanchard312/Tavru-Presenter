@@ -1,4 +1,6 @@
-# Inanna branding and provenance
+# Tavru Presenter branding and provenance
+
+The public name is Tavru Presenter. This record was written when the fork was called Inanna. The repository is now `tomblanchard312/Tavru-Presenter`. Window titles say Tavru Presenter. Executables remain `inanna` and `inanna-cli`, and the desktop id remains `io.github.tomblanchard312.Inanna`. The bullets below are the 2026-10-30 record and still describe those identifiers.
 
 Status: application and installer branding implemented; native package acceptance pending, 2026-10-30.
 

@@ -221,7 +221,7 @@ pub(super) fn presenter_window(ctx: &egui::Context, show: &mut Show, doc: &std::
                 let left = Rect::from_min_max(avail.min, pos2(avail.min.x + avail.width() * 0.62, avail.max.y));
                 let right = Rect::from_min_max(pos2(left.max.x + 16.0, avail.min.y), avail.max);
                 let cr = fit(Rect::from_min_max(left.min, pos2(left.max.x, left.min.y + left.height() * 0.8)), doc);
-                let cr = Rect::from_min_size(left.min, cr.size());
+                let cr = crate::textures::device_pixel_rect(Rect::from_min_size(left.min, cr.size()), ui.ctx().pixels_per_point());
                 if let Some(t) = &cur_tex {
                     ui.painter().image(t.id(), cr, Rect::from_min_max(pos2(0.0, 0.0), pos2(1.0, 1.0)), Color32::WHITE);
                 }
@@ -244,7 +244,7 @@ pub(super) fn presenter_window(ctx: &egui::Context, show: &mut Show, doc: &std::
                 if let Some(c) = show.blank {
                     ui.painter().rect_filled(cr, CornerRadius::ZERO, c);
                 }
-                let nr = next_rect(right, doc);
+                let nr = crate::textures::device_pixel_rect(next_rect(right, doc), ui.ctx().pixels_per_point());
                 ui.painter().text(right.min, Align2::LEFT_TOP, "Next", theme::font(13.0), Color32::from_gray(170));
                 match &next_tex {
                     Some(t) => {

@@ -3,7 +3,7 @@ use super::media::{
     Pick, Under, gif_hit, media_bar_target, media_hit, on_screen, pointer_on_media_bar, run_media_cues, shapes_under_pointer, show_media,
 };
 use super::presenter::{PresenterTimer, format_elapsed, presenter_window};
-use super::render::{below_playing_video, fit, part_textures, quad_mesh, render_frame, render_overlay, render_threads, start_prefetch};
+use super::render::{below_playing_video, fit_pixels, part_textures, quad_mesh, render_frame, render_overlay, render_threads, start_prefetch};
 use super::zoom::{
     Zoom, grid_indices, norm_on_slide, paint_grid, see_all_hit, slide_aspect, slide_box, slide_to_screen, toggle_blank, tool_bar_rect, unit_uv,
     wheel_zoom_lines,
@@ -109,7 +109,7 @@ pub fn ui(app: &mut SlideApp, ui: &mut Ui) {
     }
     let full = ui.max_rect();
     let avail = if show.reading { Rect::from_min_max(full.min, pos2(full.max.x, full.max.y - 34.0)) } else { full };
-    let srect = fit(avail, &doc);
+    let srect = fit_pixels(avail, &doc, ctx.pixels_per_point());
     let pointer = ctx.input(|i| i.pointer.interact_pos());
     show.expire_goto(now);
     // The clock of the triggered animations runs before anything reacts to the pointer.
@@ -168,7 +168,7 @@ fn paint_hidden(ui: &Ui, doc: &Presentation, show: &Show) {
     if show.started {
         let full = ui.max_rect();
         let avail = if show.reading { Rect::from_min_max(full.min, pos2(full.max.x, full.max.y - 34.0)) } else { full };
-        let srect = fit(avail, doc);
+        let srect = fit_pixels(avail, doc, ui.ctx().pixels_per_point());
         let painter = ui.painter_at(full);
         painter.rect_filled(full, CornerRadius::ZERO, Color32::BLACK);
         if let Some((_, tex)) = &show.tex {
@@ -535,7 +535,10 @@ fn draw_videos(app: &mut SlideApp, show: &mut Show, f: &Fr, sl: &Sl, painter: &e
             full_screen = true;
             full
         } else {
-            slide_box(srect, uv, (sw, sh), (x.x as f32, x.y as f32, x.w as f32, x.h as f32))
+            crate::textures::device_pixel_rect(
+                slide_box(srect, uv, (sw, sh), (x.x as f32, x.y as f32, x.w as f32, x.h as f32)),
+                f.ctx.pixels_per_point(),
+            )
         };
         if crate::media::paint_frame(painter, &app.media, *id, r, clip.crop) {
             framed.push(*id);
